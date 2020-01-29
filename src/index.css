@@ -3,3 +3,21 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.conversation{
+  width: 50%;
+  min-width: 600px;
+  height: auto;
+  min-height: 200px;
+  background: gray;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+textarea {
+        resize: none;
+    }
+.line{
+  display:flex;
+  align-items: center;
+}
