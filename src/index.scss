@@ -1,0 +1,87 @@
+html, body{
+  padding: 0;
+  margin: 0;
+  height: auto;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.conversation{
+  width: 40%;
+  min-width: 600px;
+  height: auto; 
+  background: white;
+  border: 1px gray solid;
+  padding: 15px;
+  border-radius: 5px;
+  .dialogs{
+    .line{
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: space-evenly;
+      border-bottom: 1px solid gray;
+      margin: 1.5em auto;
+      * {
+    margin: 5px 0;
+  }
+      .input-name{
+        display: flex;
+        width: 100%;
+        flex-wrap:no-wrap;
+        justify-content: space-between;
+        select{
+          width: 50%;
+          padding: 5px;
+          font-size: 1em;
+        }
+      }
+      textarea {
+        resize: none;
+        position:relative;
+        width: auto;
+        font-size: 1.2em;
+      }
+      .expressions{ 
+        margin-bottom: 1.5em;
+        input[type=checkbox]{
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+  .dialog-opts{
+   width: auto;
+    display: flex;
+    justify-content: flex-end;
+    *{
+      margin: 0 5px;
+    }
+  }
+}
+
+.btn{
+  font-size: 1em;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-add {background-color: #4CAF50;} /* Green */
+.btn-delete {background-color: #f44336;} /* Red */
+.btn-generate {background-color: #008CBA;} /* Blue */
+
+*{
+    user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+}
