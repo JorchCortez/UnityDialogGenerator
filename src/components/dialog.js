@@ -14,12 +14,15 @@ class Dialog extends React.Component {
 
     DeleteLine = (lineIndex) =>{ 
         const dialog = [...this.state.lines]; 
+        console.table("******before******");
         console.table(dialog);
+        console.log(lineIndex);
         dialog.splice(lineIndex, 1);
+        console.table("******after******");
         console.table(dialog);
         console.log(lineIndex);
         this.setState({lines: dialog})
-    }
+    } 
 
     AddLine = () =>{  
 
@@ -35,11 +38,19 @@ class Dialog extends React.Component {
     }
 
     GetCharacter = (e) => {
-        console.log(e.target.value)
+        console.log(e.target.value) 
+        console.log(e.target.id)
+        //const dialog = [...this.state.lines]; 
+        //this.state.lines[e.]
+       /* this.setState(state => {
+            state.lines[]
+        })*/
     }
+
     GetText = (e) => {
         this.setState({itemDescription: e.target.value});
     }
+
     GetEmotion = (e) => {
         this.setState({itemPrice: parseInt(e.target.value)});
     }

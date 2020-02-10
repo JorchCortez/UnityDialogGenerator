@@ -15,11 +15,8 @@ const Line = (props) => {
     return (
     <div className="line">
         <div className="input-name"> 
-            <select onChange={props.GetCharacter} value={props.character}> 
-                {opts.options.map(item => ( <option key={item.value} value={item.value}> {item.name} </option> ))}
-                <option value="Annie">Annie</option>
-                <option value="Machia">Machia</option>
-                <option value="Mr. Gray">Mr. Gray</option>
+            <select id={props.id} onChange={props.GetCharacter} value={props.character}> 
+                {opts.options.map(item => ( <option key={item.value} value={item.value}> {item.name} </option> ))} 
             </select> 
             <button className="btn btn-delete" onClick={() => {props.DeleteLine(props.id)}}> Delete line </button>
         </div>
