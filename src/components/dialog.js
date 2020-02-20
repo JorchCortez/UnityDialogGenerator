@@ -14,8 +14,8 @@ class Dialog extends React.Component {
                  }]
              }
     } 
- 
-    c = (lineIndex) =>{ 
+
+    DeleteLine = (lineIndex) =>{ 
         const dialog = [...this.state.lines]; 
         console.table("******before******");
         console.table(dialog);
