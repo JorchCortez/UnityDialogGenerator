@@ -1,4 +1,4 @@
-html, body{
+html, body, #root, .App{
   padding: 0;
   margin: 0;
   height: auto;
@@ -12,12 +12,13 @@ html, body{
 html{
   background: url(./misc/imgs/bg.jpeg) no-repeat fixed center;
   background-size: cover; 
-}
+} 
 
 .conversation{
   width: 40%;
   min-width: 600px;
   height: auto; 
+  max-height: 90vh;
   background: white;
   border: 1px gray solid;
   padding: 15px;
@@ -34,9 +35,10 @@ html{
     }
   }
   .dialogs{
-    height: 85vh;
-    overflow: scroll;
-    }
+    height: 600px;  
+    overflow: scroll;  
+    -webkit-transition: height 1s; /* Safari */
+    transition: max-height 1s;
     .line{
       position: relative;
       width: 100%;
@@ -84,17 +86,20 @@ html{
         }
       }
       .dialog-opts{ 
-         justify-content: space-between; 
-         .dialog-title{
-           font-family: Arial, Helvetica, sans-serif;
-           margin: 0 15px;
-           font-size: 1.5em;
-         }
-       }
+          justify-content: space-between; 
+          .dialog-title{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0 15px;
+            font-size: 1.5em;
+          }
+        }
+      }
     }
   }
+
   .dialog-opts{
     margin-top: 20px;
+    height: 10%;
     width: auto;
     display: flex;
     justify-content: flex-end;
@@ -132,4 +137,36 @@ select{
     border: 1px solid rgb(0, 65, 87); 
     overflow: hidden !important;
     background-color: #fff !important;
+}
+
+/**************************/
+/**********Nav Bar*********/
+/**************************/
+
+.nav-bar {
+  position: fixed;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top:0;
+  left: 0;
+  overflow: hidden;
+  background-color: #333;
+  
+  li {
+    float: left;
+    a {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.4em;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    a:hover {
+      background-color: #111;
+    }
+  }
 }

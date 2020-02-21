@@ -83,19 +83,19 @@ class Dialog extends React.Component {
     }
 
   render() {
-    return (
-        <div className="conversation">
-        <div className="conversation-title"> 
-            <input type="text" onChange={this.UpdateTitle} placeholder="Dialog Title"></input>
-        </div>
-        <div className="dialogs"> 
-            {this.state.lines.map((data, i) => <Line key={i} id={i} GetCharacter={this.GetCharacter} GetEmotion={this.GetEmotion} GetDialogLine={this.GetDialogLine} DeleteLine={this.DeleteLine} character={data.character} emotion={data.emotion} dialog={data.dialog} emotion={data.emotion}/> ) }
-        </div>
-        <div className="dialog-opts">
-            <button className="btn btn-add" onClick={this.AddLine}> Add line </button>
-            <button className="btn btn-generate" onClick={this.downloadFile}> Create file </button> 
-        </div>
-        </div>
+    return ( 
+            <div className="conversation">
+                <div className="conversation-title"> 
+                    <input type="text" onChange={this.UpdateTitle} placeholder="Dialog Title"></input>
+                </div>
+                <div className="dialogs"> 
+                    {this.state.lines.map((data, i) => <Line key={i} id={i} GetCharacter={this.GetCharacter} GetEmotion={this.GetEmotion} GetDialogLine={this.GetDialogLine} DeleteLine={this.DeleteLine} character={data.character} emotion={data.emotion} dialog={data.dialog} emotion={data.emotion}/> ) }
+                </div>
+                <div className="dialog-opts">
+                    <button className="btn btn-add" onClick={this.AddLine}> Add line </button>
+                    <button className="btn btn-generate" onClick={this.downloadFile}> Create file </button> 
+                </div>
+            </div> 
     );
   }
 }
