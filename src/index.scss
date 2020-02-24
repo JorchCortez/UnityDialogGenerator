@@ -146,7 +146,11 @@ html{
       border:none;
     }
   }
-
+  .char-list{
+    height: 500px;
+    width: 100%;
+    overflow: scroll;
+  }
   .list-group-item {
     height: auto;
     width: 100%;  
@@ -243,4 +247,12 @@ select{
       background-color: #111;
     }
   }
+}
+
+
+/**************************/
+/********** Misc **********/
+/**************************/
+.white{
+  color: white;
 }

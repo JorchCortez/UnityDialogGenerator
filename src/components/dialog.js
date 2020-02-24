@@ -1,8 +1,6 @@
 import React from 'react';
 import Line from './line'
 
-var file;
-
 class Dialog extends React.Component { 
     constructor(props) {
         super(props);
@@ -13,7 +11,7 @@ class Dialog extends React.Component {
                      emotion:"Default"
                  }],
                  dialogTitle: ""
-             }
+        }
     } 
 
     DeleteLine = (lineIndex) =>{ 
@@ -30,22 +28,37 @@ class Dialog extends React.Component {
     }
 
     downloadFile = async () => {
-    const myDialog = {lines: this.state.lines};
-    const fileName = this.state.dialogTitle; 
-    const json = JSON.stringify(myDialog);
-    const blob = new Blob([json],{type:'application/json'});
-    const href = await URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = href;
-    link.download = fileName + ".json";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+        if(!this.state.dialogTitle){
+            alert("Please add a title for the dialog.");
+            return;
+        }
+ 
+        if(this.state.lines.find(l => (!l.character || !l.dialog ))){
+            alert("All the dialogs require a Character and Text.");
+            return;
+        }
+
+        if(this.state.lines.length > 0){
+            const myDialog = {lines: this.state.lines};
+            const fileName = this.state.dialogTitle; 
+            const json = JSON.stringify(myDialog);
+            const blob = new Blob([json],{type:'application/json'});
+            const href = await URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = href;
+            link.download = fileName + ".json";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        else{
+            alert("The file is empty")
+        }
     }
 
     GetCharacter = (e) => { 
-        const dialog = [...this.state.lines]; 
-        this.state.lines[e.target.id].character = e.target.value;
+        const dialog = [...this.state.lines];  
+        dialog[e.target.id].character = e.target.value; 
         this.setState({
             lines:[...dialog]
         })

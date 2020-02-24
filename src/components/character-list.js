@@ -1,23 +1,41 @@
 import React from 'react'; 
 import Characters from './characters'
+import Files from "react-files";
 
 class CharacterList extends React.Component { 
     constructor(props) {
         super(props);
          this.state = {
-            characters:[
-                {name: 'Annie'},
-                {name: 'Machia'},
-                {name: 'Marago'},
-                {name: 'Mr Gray the cat'} 
-            ],
+            characters:[],
             charName: ""
          }
+
+         this.fileReader = new FileReader();
+         this.fileReader.onload = event => {
+           this.setState({ characters: JSON.parse(event.target.result).characters}, () => { 
+             console.log(this.state.characters);
+             this.SaveData("");
+           });
+         };
     } 
 
-    DeleteCharacter = (e) =>{  
+    componentDidMount(){
+        this.setState({
+            characters: (JSON.parse(localStorage.getItem("myCharacters")) ) ? JSON.parse(localStorage.getItem("myCharacters")) : []
+        })
+    }
+
+    SaveData = (newChar) =>{
+        localStorage.setItem('myCharacters', (newChar) ? JSON.stringify([...this.state.characters, newChar]) : JSON.stringify(this.state.characters));
+    }
+
+    DeleteCharacter = (e, lineIndex) =>{ 
         e.preventDefault();
-        console.log("Removing character", "yeah im supposed to ain't i?")
+        console.log("run?")
+        const characterList = [...this.state.characters];
+        characterList.splice(lineIndex, 1);
+        this.setState({characters: characterList})  
+        localStorage.setItem('myCharacters',  JSON.stringify(characterList));
     }
 
     AddCharacter = () =>{ 
@@ -27,24 +45,29 @@ class CharacterList extends React.Component {
                 characters: [...this.state.characters, newChar],
                 charName: ""
             })
+            this.SaveData(newChar)
         }
         else{
             alert("Please add a character name.")
-        }
+        } 
     }
 
     downloadFile = async () => {
-    const myCharacters = {lines: this.state.characters};
-    const fileName = "Characters"; 
-    const json = JSON.stringify(myCharacters);
-    const blob = new Blob([json],{type:'application/json'});
-    const href = await URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = href;
-    link.download = fileName + ".json";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    if(this.state.characters.length > 0){
+            const myCharacters = {characters: this.state.characters};
+            const fileName = "Characters"; 
+            const json = JSON.stringify(myCharacters);
+            const blob = new Blob([json],{type:'application/json'});
+            const href = await URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = href;
+            link.download = fileName + ".json";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }else{
+            alert("Please add characters to the list")
+        }
     }
  
     SetCharacterName = (e) => { 
@@ -61,10 +84,20 @@ class CharacterList extends React.Component {
                     <button type="submit" className="btn btn-add" onClick={this.AddCharacter}> + </button> 
                 </div>
                 <div className="char-list">
-                    {(this.state.characters.length> 0) ? this.state.characters.map((char, i) => <Characters key={i} name={char.name} index={i} DeleteCharacter={this.DeleteCharacter}  /> ) : <h1>Reeeeee!</h1>}
+                    {(this.state.characters.length> 0) ? this.state.characters.map((char, i) => <Characters key={i} name={char.name} index={i} DeleteCharacter={this.DeleteCharacter}  /> ) : <h1 className="white">Please add your characters or upload your character's file.</h1>}
                 </div>
-                <div className="opts">
-                    <button className="btn btn-add" onClick={this.AddLine}> Upload file </button>
+                <div className="opts"> 
+                    <Files className="btn btn-add"
+                        onChange={file => {
+                            this.fileReader.readAsText(file[0]);
+                        }}
+                        onError={err => console.log("Error:", err)}
+                        accepts={[".json"]}
+                        multiple
+                        maxFiles={3}
+                        maxFileSize={10000000}
+                        minFileSize={0}
+                        clickable >Upload file</Files>
                     <button className="btn btn-generate" onClick={this.downloadFile}> Create file </button> 
                 </div>
             </div>
