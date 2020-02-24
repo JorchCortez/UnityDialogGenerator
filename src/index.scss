@@ -1,3 +1,6 @@
+/**************************/
+/****** Styling page ******/
+/**************************/
 html, body, #root, .App{
   padding: 0;
   margin: 0;
@@ -13,14 +16,16 @@ html{
   background: url(./misc/imgs/bg.jpeg) no-repeat fixed center;
   background-size: cover; 
 } 
-
+*:focus {outline:none;}
+/**************************/
+/**********Dialogs*********/
+/**************************/
 .conversation{
   width: 40%;
   min-width: 600px;
   height: auto; 
   max-height: 90vh;
-  background: white;
-  border: 1px gray solid;
+  background: rgba(44, 47, 51, 0.6);
   padding: 15px;
   border-radius: 5px;
   .conversation-title{ 
@@ -31,7 +36,8 @@ html{
       border: none;
       font-size: 1.5em;
       text-align: center;
-      border-bottom: 1px solid rgb(0, 65, 87)
+      border-bottom: 1px solid rgb(0, 65, 87);
+      border-radius: 5px;
     }
   }
   .dialogs{
@@ -43,18 +49,20 @@ html{
       position: relative;
       width: 100%;
       display: flex;
+      background: white;
+      border-radius: 5px;
       flex-wrap: wrap;
       flex-direction: column;
       justify-content: space-evenly;
       border-bottom: 1px solid gray;
-      margin: 1.5em auto;
+      margin: 1em auto;
       padding-bottom: 1.2em;
       * {
-        margin: 5px 0;
+        margin: 5px 10px;
       }
       .input-name{
         display: flex;
-        width: 100%;
+        width: 90%;
         flex-wrap:no-wrap;
         justify-content: space-between;
         select{
@@ -97,19 +105,75 @@ html{
     }
   }
 
-  .dialog-opts{
-    margin-top: 20px;
-    height: 10%;
-    width: auto;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    *{
-      margin: 0 5px;
+.opts{
+  margin-top: 20px;
+  height: 10%;
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  *{
+    margin: 0 5px;
+  }
+}
+
+
+/**************************/
+/******* Characters *******/
+/**************************/
+.characters{
+  width: 40%;
+  min-width: 600px;
+  height: auto; 
+  max-height: 90vh; 
+  padding: 15px;  
+  background: rgba(44, 47, 51, 0.6);
+  font-family: Arial, Helvetica, sans-serif;
+
+  .character-add{
+    width: 100%;  
+    background: white;
+    display: flex;  
+    justify-content: space-between;
+    flex-wrap: nowrap; 
+    border-radius: 5px; 
+    margin: 10px 0; 
+    margin-bottom: 30px;
+    input{
+      width:100%;
+      font-size: 1.3em;
+      border-radius: 5px;
+      border:none;
     }
   }
 
+  .list-group-item {
+    height: auto;
+    width: 100%;  
+    background: white;
+    display: flex;  
+    justify-content: space-between;
+    flex-wrap: nowrap; 
+    border-radius: 5px; 
+    margin: 10px 0;
+    .char-name{ 
+      padding-left: 1.2em;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      * {
+        margin: 10px;
+      }
+    }
+    .btn{ 
+      border-radius: 0 5px 5px 0; 
+    }
+  }
+}
 
+/**************************/
+/**********Buttons*********/
+/**************************/
 .btn{
   font-size: 1em;
   border: none;
@@ -118,10 +182,20 @@ html{
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  border-radius: 2.5px;
 }
-.btn-add {background-color: #4CAF50;} /* Green */
-.btn-delete {background-color: #f44336;} /* Red */
-.btn-generate {background-color: #008CBA;} /* Blue */
+/* Add button*/
+.btn-add {background-color: #4CAF50;} 
+.btn-add:hover {background-color: #6cbd6f;} 
+.btn-add:active {background-color: #38803b;} 
+/* Delete button*/
+.btn-delete {background-color: #f44336;}
+.btn-delete:hover {background-color: #f6655a;} 
+.btn-delete:active {background-color: #b23128;} 
+/* Generate button*/
+.btn-generate {background-color: #008CBA;}  
+.btn-generate:hover {background-color: #45abcc;} 
+.btn-generate:active {background-color: #006688;} 
 
 *{
     user-select: none; /* supported by Chrome and Opera */

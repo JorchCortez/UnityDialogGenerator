@@ -17,14 +17,8 @@ class Dialog extends React.Component {
     } 
 
     DeleteLine = (lineIndex) =>{ 
-        const dialog = [...this.state.lines]; 
-        console.table("******before******");
-        console.table(dialog);
-        console.log(lineIndex);
+        const dialog = [...this.state.lines];
         dialog.splice(lineIndex, 1);
-        console.table("******after******");
-        console.table(dialog);
-        console.log(lineIndex);
         this.setState({lines: dialog})
     }
 
@@ -32,23 +26,22 @@ class Dialog extends React.Component {
         var newLine = { character: "",dialog:"",emotion:"Default"}
             this.setState({ 
                 lines: [...this.state.lines, newLine]
-            }) 
-        console.log("Adding line", "yeah im supposed to ain't i?")
+            })
     }
 
-     downloadFile = async () => {
-        const myDialog = {lines: this.state.lines};
-        const fileName = this.state.dialogTitle; 
-        const json = JSON.stringify(myDialog);
-        const blob = new Blob([json],{type:'application/json'});
-        const href = await URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = href;
-        link.download = fileName + ".json";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
+    downloadFile = async () => {
+    const myDialog = {lines: this.state.lines};
+    const fileName = this.state.dialogTitle; 
+    const json = JSON.stringify(myDialog);
+    const blob = new Blob([json],{type:'application/json'});
+    const href = await URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = href;
+    link.download = fileName + ".json";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    }
 
     GetCharacter = (e) => { 
         const dialog = [...this.state.lines]; 
@@ -58,9 +51,7 @@ class Dialog extends React.Component {
         })
     }
 
-    GetEmotion = (e) => { 
-        console.log(e.target.value)
-        console.log(e.target.id)
+    GetEmotion = (e) => {
         const dialog = [...this.state.lines]; 
         this.state.lines[e.target.id].emotion = e.target.value;
         this.setState({
@@ -84,18 +75,18 @@ class Dialog extends React.Component {
 
   render() {
     return ( 
-            <div className="conversation">
-                <div className="conversation-title"> 
-                    <input type="text" onChange={this.UpdateTitle} placeholder="Dialog Title"></input>
-                </div>
-                <div className="dialogs"> 
-                    {this.state.lines.map((data, i) => <Line key={i} id={i} GetCharacter={this.GetCharacter} GetEmotion={this.GetEmotion} GetDialogLine={this.GetDialogLine} DeleteLine={this.DeleteLine} character={data.character} emotion={data.emotion} dialog={data.dialog} emotion={data.emotion}/> ) }
-                </div>
-                <div className="dialog-opts">
-                    <button className="btn btn-add" onClick={this.AddLine}> Add line </button>
-                    <button className="btn btn-generate" onClick={this.downloadFile}> Create file </button> 
-                </div>
-            </div> 
+        <div className="conversation">
+            <div className="conversation-title"> 
+                <input type="text" onChange={this.UpdateTitle} placeholder="Dialog Title"></input>
+            </div>
+            <div className="dialogs"> 
+                {this.state.lines.map((data, i) => <Line key={i} id={i} GetCharacter={this.GetCharacter} GetEmotion={this.GetEmotion} GetDialogLine={this.GetDialogLine} DeleteLine={this.DeleteLine} character={data.character} emotion={data.emotion} dialog={data.dialog} emotion={data.emotion}/> ) }
+            </div>
+            <div className="opts">
+                <button className="btn btn-add" onClick={this.AddLine}> Add line </button>
+                <button className="btn btn-generate" onClick={this.downloadFile}> Create file </button> 
+            </div>
+        </div> 
     );
   }
 }

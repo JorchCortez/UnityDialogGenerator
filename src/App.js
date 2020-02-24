@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Dialog from './components/dialog'; 
-import Characters from './components/characters';
+import CharacterList from './components/character-list.js';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -21,16 +21,13 @@ class App extends Component {
               <li>
                 <Link className="nav-item" to="/Characters">Manage Characters</Link>
               </li>
-              <li>
-                <Link className="nav-item" to="/Moods">Manage moods</Link>
-              </li>
             </div> 
             <Switch>
+              <Route path="/Characters">
+                <CharacterList />
+              </Route>
               <Route path="/">
                 <Dialog />
-              </Route>
-              <Route path="/Characters">
-                <Characters />
               </Route>
             </Switch> 
         </Router>

@@ -2,12 +2,12 @@ import React from 'react';
 
 const charOpts = {
     options: [
-      { name: 'Select…', value: null },
-      { name: 'Annie', value: 'Annie'},
-      { name: 'Machia', value: 'Machia'},
-      { name: 'Mr. Gray', value: 'Mr. Gray'}
+        { name: 'Select…', value: null },
+        { name: 'Annie', value: 'Annie'},
+        { name: 'Machia', value: 'Machia'},
+        { name: 'Mr. Gray', value: 'Mr. Gray'}
     ]
-  }
+}
 const emotionOpts = {
     options: [
         { name: 'Default', value: 'Default'},
@@ -20,9 +20,7 @@ const emotionOpts = {
     ]
 }
   
-const Line = (props) => {
- 
-
+const Line = (props) => { 
     return (
     <div className="line">
         <div className="dialog-opts">
