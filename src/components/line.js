@@ -8,7 +8,11 @@ const emotionOpts = {
         { name: 'Worried', value: 'Worried'},
         { name: 'Amazed', value: 'Amazed'},
         { name: 'Scared', value: 'Scared'},
-        { name: 'Laughing', value: 'Laughing'}
+        { name: 'Laughing', value: 'Laughing'},
+        { name: 'Sad', value: 'Sad'}, 
+        { name: 'Thoughtful', value: 'Thoughtful'}, 
+        { name: 'Determined', value: 'Determined'},
+        { name: 'Confused', value: 'Confused'}
     ]
 }
   
