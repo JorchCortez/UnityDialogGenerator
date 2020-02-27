@@ -98,12 +98,11 @@ class CharacterList extends React.Component {
                 <div className="opts"> 
                     <Files className="btn btn-upload"
                         onChange={file => {
-                            this.fileReader.readAsText(file[0]);
+                            this.fileReader.readAsText(file[file.length - 1]);
                         }}
                         onError={err => console.log("Error:", err)}
                         accepts={[".json"]}
-                        multiple
-                        maxFiles={3}
+                        multiple 
                         maxFileSize={10000000}
                         minFileSize={0}
                         clickable >Upload file</Files>
