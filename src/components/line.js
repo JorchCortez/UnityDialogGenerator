@@ -1,5 +1,5 @@
 import React from 'react';
- 
+import {Draggable} from 'react-beautiful-dnd'
 const emotionOpts = {
     options: [
         { name: 'Default', value: 'Default'},
@@ -32,22 +32,26 @@ class Line extends React.Component {
 
     render(){ 
         return (
-            <div className="line">
-                <div className="opts dialog-opts">
-                    <h1 className="dialog-title">Dialog line #{this.props.id + 1}</h1><button className="btn btn-delete" onClick={() => {this.props.DeleteLine(this.props.id)}}> Delete line </button>
-                </div>
-                <div className="input-name"> 
-                    <select id={this.props.id} onChange={this.props.GetCharacter} value={this.props.character}> 
-                        <option value=""> {(this.state.characters.length > 0) ? "Select a character" : "Please add characters" } </option>
-                        {this.state.characters.map((c, i) => ( <option key={i} value={c.name}> {c.name} </option> ))} 
-                    </select> 
-                    <select id={this.props.id} onChange={this.props.GetEmotion} value={this.props.emotion}> 
-                        {emotionOpts.options.map(item => ( <option key={item.value} value={item.value}> {item.name} </option> ))} 
-                    </select> 
-                </div>
-                <textarea id={this.props.id} onChange={this.props.GetDialogLine} rows="5"></textarea> 
-            </div> 
-            );
+            <Draggable draggableId={this.props.id.toString() } index={this.props.index}>
+                {provided=>(
+                    <div className="line" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                        <div className="opts dialog-opts">
+                            <h1 className="dialog-title">Dialog line #{this.props.id + 1}</h1><button className="btn btn-delete" onClick={() => {this.props.DeleteLine(this.props.id)}}> Delete line </button>
+                        </div>
+                        <div className="input-name"> 
+                            <select id={this.props.id} onChange={this.props.GetCharacter} value={this.props.character}> 
+                                <option value=""> {(this.state.characters.length > 0) ? "Select a character" : "Please add characters" } </option>
+                                {this.state.characters.map((c, i) => ( <option key={i} value={c.name}> {c.name} </option> ))} 
+                            </select> 
+                            <select id={this.props.id} onChange={this.props.GetEmotion} value={this.props.emotion}> 
+                                {emotionOpts.options.map(item => ( <option key={item.value} value={item.value}> {item.name} </option> ))} 
+                            </select> 
+                        </div>
+                        <textarea id={this.props.id} onChange={this.props.GetDialogLine} value={this.props.dialog} rows="5"></textarea> 
+                    </div>  
+                )} 
+            </Draggable>
+        );
     }
 }
 

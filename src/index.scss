@@ -25,7 +25,7 @@ html{
   min-width: 600px;
   height: auto; 
   max-height: 90vh;
-  background: rgba(44, 47, 51, 0.6);
+  background: rgba(44, 47, 51, 0.2);
   padding: 15px;
   border-radius: 5px;
   .conversation-title{ 
@@ -35,8 +35,7 @@ html{
       width: 100%;
       border: none;
       font-size: 1.5em;
-      text-align: center;
-      border-bottom: 1px solid rgb(0, 65, 87);
+      text-align: center; 
       border-radius: 5px;
     }
   }
@@ -127,7 +126,8 @@ html{
   height: auto; 
   max-height: 90vh; 
   padding: 15px;  
-  background: rgba(44, 47, 51, 0.6);
+  background: rgba(44, 47, 51, 0.2);
+  border-radius: 5px;
   font-family: Arial, Helvetica, sans-serif;
 
   .character-add{
@@ -187,6 +187,7 @@ html{
   text-decoration: none;
   display: inline-block;
   border-radius: 2.5px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 /* Add button*/
 .btn-add {background-color: #4CAF50;} 
@@ -200,6 +201,10 @@ html{
 .btn-generate {background-color: #008CBA;}  
 .btn-generate:hover {background-color: #45abcc;} 
 .btn-generate:active {background-color: #006688;} 
+/* Upload button*/
+.btn-upload {background-color: #2C2F33;}  
+.btn-upload:hover {background-color: #525458;} 
+.btn-upload:active {background-color: #181a1c;} 
 
 *{
     user-select: none; /* supported by Chrome and Opera */

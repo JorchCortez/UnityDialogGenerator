@@ -1,5 +1,7 @@
 import React from 'react';
 import Line from './line'
+import {DragDropContext, Droppable} from 'react-beautiful-dnd';
+import Files from "react-files";
 
 class Dialog extends React.Component { 
     constructor(props) {
@@ -10,8 +12,23 @@ class Dialog extends React.Component {
                      dialog:"",
                      emotion:"Default"
                  }],
-                 dialogTitle: ""
+                 dialogTitle: "",
+                 fileName:""
         }
+        this.fileReader = new FileReader();
+        this.fileReader.onload = event => {
+            var res = JSON.parse(event.target.result)
+            console.log(res)
+            if(res.lines){ 
+                this.setState({ lines: res.lines,dialogTitle: this.state.fileName.replace('.json','')});
+                
+            }
+            else{ 
+                this.setState({ dialogTitle: ""});
+                alert("Please add a valid dialog file")
+            }
+        };
+        
     } 
 
     DeleteLine = (lineIndex) =>{ 
@@ -86,20 +103,48 @@ class Dialog extends React.Component {
         });
     }
 
+    onDragEnd = result => {
+        let to = result.destination.index;
+        let from = result.source.index; 
+        this.state.lines.splice(to, 0, this.state.lines.splice(from, 1)[0]); 
+    } 
+
   render() {
     return ( 
-        <div className="conversation">
-            <div className="conversation-title"> 
-                <input type="text" onChange={this.UpdateTitle} placeholder="Dialog Title"></input>
-            </div>
-            <div className="dialogs"> 
-                {this.state.lines.map((data, i) => <Line key={i} id={i} GetCharacter={this.GetCharacter} GetEmotion={this.GetEmotion} GetDialogLine={this.GetDialogLine} DeleteLine={this.DeleteLine} character={data.character} emotion={data.emotion} dialog={data.dialog} emotion={data.emotion}/> ) }
-            </div>
-            <div className="opts">
-                <button className="btn btn-add" onClick={this.AddLine}> Add line </button>
-                <button className="btn btn-generate" onClick={this.downloadFile}> Create file </button> 
-            </div>
-        </div> 
+        <DragDropContext onDragEnd={this.onDragEnd}>
+            <div className="conversation">
+                <div className="conversation-title"> 
+                    <input type="text" onChange={this.UpdateTitle} value={this.state.dialogTitle} placeholder="Dialog Title"></input>
+                </div> 
+                <Droppable droppableId="0">  
+                {provided => (
+                    <div className="dialogs" 
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}> 
+                        {this.state.lines.map((data, i) => <Line index={i} key={i} id={i} GetCharacter={this.GetCharacter} GetEmotion={this.GetEmotion} GetDialogLine={this.GetDialogLine} DeleteLine={this.DeleteLine} character={data.character} emotion={data.emotion} dialog={data.dialog} emotion={data.emotion}/> ) }
+                        {provided.placeholder}
+                    </div> 
+                )}
+                </Droppable>
+                <div className="opts">
+                    <Files className="btn btn-upload" 
+                        onChange={file => {
+                            console.log(file.length)
+                            this.fileReader.readAsText(file[file.length - 1]); 
+                            this.setState({Name: file[file.length - 1].name});
+                            console.log(file)
+                        }}
+                        onError={err => console.log("Error:", err)}
+                        accepts={[".json"]}
+                        multiple 
+                        maxFileSize={10000000}
+                        minFileSize={0}
+                        clickable >Upload file</Files>
+                    <button className="btn btn-add" onClick={this.AddLine}> Add line </button>
+                    <button className="btn btn-generate" onClick={this.downloadFile}> Create file </button> 
+                </div>
+            </div> 
+        </DragDropContext>
     );
   }
 }

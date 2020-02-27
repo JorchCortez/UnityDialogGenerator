@@ -71,23 +71,32 @@ class CharacterList extends React.Component {
     }
  
     SetCharacterName = (e) => { 
+        if (e.key === 'Enter') {
+            this.AddCharacter();
+        }
         this.setState({
             charName: e.target.value
         })
+    }
+
+    keyPressed = (event) => {
+        if (event.key === "Enter") {
+            this.AddCharacter()
+        }
     }
 
     render() {
         return (
             <div className="characters">
                 <div className="character-add">
-                    <input type="text" onChange={this.SetCharacterName} value={this.state.charName} placeholder="New character name..."/>
+                    <input type="text" onChange={this.SetCharacterName} value={this.state.charName} onKeyPress={this.keyPressed} placeholder="New character name..."/>
                     <button type="submit" className="btn btn-add" onClick={this.AddCharacter}> + </button> 
                 </div>
                 <div className="char-list">
                     {(this.state.characters.length> 0) ? this.state.characters.map((char, i) => <Characters key={i} name={char.name} index={i} DeleteCharacter={this.DeleteCharacter}  /> ) : <h1 className="white">Please add your characters or upload your character's file.</h1>}
                 </div>
                 <div className="opts"> 
-                    <Files className="btn btn-add"
+                    <Files className="btn btn-upload"
                         onChange={file => {
                             this.fileReader.readAsText(file[0]);
                         }}
