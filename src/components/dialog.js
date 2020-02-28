@@ -21,7 +21,6 @@ class Dialog extends React.Component {
             console.log(res)
             if(res.lines){ 
                 this.setState({ lines: res.lines,dialogTitle: this.state.fileName.replace('.json','')});
-                
             }
             else{ 
                 this.setState({ dialogTitle: ""});
@@ -131,7 +130,7 @@ class Dialog extends React.Component {
                         onChange={file => {
                             console.log(file.length)
                             this.fileReader.readAsText(file[file.length - 1]); 
-                            this.setState({Name: file[file.length - 1].name});
+                            this.setState({fileName: file[file.length - 1].name});
                             console.log(file)
                         }}
                         onError={err => console.log("Error:", err)}
