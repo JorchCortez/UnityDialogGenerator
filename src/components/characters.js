@@ -4,6 +4,7 @@ class Characters extends React.Component {
     constructor(props) {
         super(props); 
       } 
+      //I havent broke this right?
       render () { 
         return(
           <li className="list-group-item "> 
