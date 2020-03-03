@@ -9,11 +9,14 @@ import {
   Link
 } from "react-router-dom";
 
-class App extends Component {
+class App extends Component { 
+
   render() {
     return (
-      <div className="App"> 
-        <Router> 
+      <div className="App">
+        
+        <Router>
+          <div className="siteContainer">
             <div className="nav-bar">
               <li>
                 <Link className="nav-item" to="/">New Conversation</Link>
@@ -23,13 +26,14 @@ class App extends Component {
               </li>
             </div> 
             <Switch>
-              <Route path="/Characters">
+              <Route path="/Characters" >
                 <CharacterList />
               </Route>
               <Route path="/">
                 <Dialog />
               </Route>
             </Switch> 
+          </div>
         </Router>
       </div>
     );

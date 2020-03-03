@@ -89,7 +89,7 @@ class CharacterList extends React.Component {
         return (
             <div className="characters">
                 <div className="character-add">
-                    <input type="text" onChange={this.SetCharacterName} value={this.state.charName} onKeyPress={this.keyPressed} placeholder="New character name..."/>
+                    <input type="text" maxlength="40" onChange={this.SetCharacterName} value={this.state.charName} onKeyPress={this.keyPressed} placeholder="New character name..."/>
                     <button type="submit" className="btn btn-add" onClick={this.AddCharacter}> + </button> 
                 </div>
                 <div className="char-list">

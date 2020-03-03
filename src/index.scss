@@ -10,6 +10,7 @@ html, body, #root, .App{
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 html{
@@ -17,20 +18,70 @@ html{
   background-size: cover; 
 } 
 *:focus {outline:none;}
+
+*{
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+/**************************/
+/******Site Container******/
+/**************************/
+.siteContainer{
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  /**************************/
+  /**********Nav Bar*********/
+  /**************************/
+  .nav-bar {
+    flex: 1 1;
+    list-style-type: none; 
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    li {
+      float: left;
+      width:100%;
+      .nav-item {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.4em;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      .nav-item:hover {
+        background-color: #111;
+      }
+    }
+  }
+}
+
 /**************************/
 /**********Dialogs*********/
 /**************************/
 .conversation{
-  width: 40%;
-  min-width: 600px;
-  height: auto; 
-  max-height: 90vh;
-  background: rgba(44, 47, 51, 0.2);
-  padding: 15px;
+  flex: 2; 
+  height: inherit;  
+  background: #99AAB5; 
   border-radius: 5px;
-  .conversation-title{ 
-    width: 100%;
-    height: 45px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  .conversation-title{
+    margin: 20px 20px 5px 20px; 
+    min-height: 40px; 
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    border-radius: 5px;
     input{
       width: 100%;
       border: none;
@@ -39,16 +90,16 @@ html{
       border-radius: 5px;
     }
   }
-  .dialogs{
-    height: 550px;  
+  .dialogs{ 
+    margin: 0 20px;
     overflow: scroll;  
-    -webkit-transition: height 1s; /* Safari */
-    transition: max-height 1s;
+    min-height: 80vh;
+    border-radius: 5px;
     .line{
       position: relative;
       width: 100%;
       display: flex;
-      background: white;
+      background: #FFFFFF;
       border-radius: 5px;
       flex-wrap: wrap;
       flex-direction: column;
@@ -104,13 +155,14 @@ html{
     }
   }
 
-.opts{
-  margin-top: 20px;
-  height: 10%;
-  width: auto;
+.opts{ 
+  height: auto;
+  min-height: 60px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin: 5px 15px;
+  margin-top: 20px;
   *{
     margin: 0 5px;
   }
@@ -121,45 +173,40 @@ html{
 /******* Characters *******/
 /**************************/
 .characters{
-  width: 40%;
-  min-width: 600px;
-  height: auto; 
-  max-height: 90vh; 
-  padding: 15px;  
-  background: rgba(44, 47, 51, 0.2);
-  border-radius: 5px;
-  font-family: Arial, Helvetica, sans-serif;
+  flex: 2; 
+  height: inherit;  
+  background: #99AAB5; 
+  border-radius: 5px; 
+  display: flex;
+  flex-direction: column;
 
   .character-add{
-    width: 100%;  
+    margin: 20px 20px 5px 20px; 
     background: white;
     display: flex;  
     justify-content: space-between;
     flex-wrap: nowrap; 
-    border-radius: 5px; 
-    margin: 10px 0; 
-    margin-bottom: 30px;
+    border-radius: 5px;  
     input{
       width:100%;
+      padding: 0 20px;
       font-size: 1.3em;
       border-radius: 5px;
       border:none;
     }
   }
   .char-list{
-    height: 500px;
-    width: 100%;
+    height: auto; 
     overflow: scroll;
   }
   .list-group-item {
-    height: auto;
-    width: 100%;  
+    height: auto; 
     background: white;
     display: flex;  
     justify-content: space-between;
     flex-wrap: nowrap; 
-    border-radius: 5px; 
-    margin: 10px 0;
+    border-radius: 5px;  
+    margin: 5px 20px;
     .char-name{ 
       padding-left: 1.2em;
       display: flex;
@@ -221,39 +268,6 @@ select{
     overflow: hidden !important;
     background-color: #fff !important;
 }
-
-/**************************/
-/**********Nav Bar*********/
-/**************************/
-
-.nav-bar {
-  position: fixed;
-  width: 100%;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  top:0;
-  left: 0;
-  overflow: hidden;
-  background-color: #333;
-  
-  li {
-    float: left;
-    .nav-item {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 1.4em;
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-    .nav-item:hover {
-      background-color: #111;
-    }
-  }
-}
-
 
 /**************************/
 /********** Misc **********/
