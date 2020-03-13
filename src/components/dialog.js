@@ -82,7 +82,7 @@ class Dialog extends React.Component {
 
     GetEmotion = (e) => {
         const dialog = [...this.state.lines]; 
-        this.state.lines[e.target.id].emotion = e.target.value;
+        dialog[e.target.id].emotion = e.target.value;
         this.setState({
             lines:[...dialog]
         }) 
@@ -90,7 +90,7 @@ class Dialog extends React.Component {
 
     GetDialogLine = (e) => { 
         const dialog = [...this.state.lines];
-        this.state.lines[e.target.id].dialog = e.target.value;
+        dialog[e.target.id].dialog = e.target.value;
         this.setState({
             lines:[...dialog]
         }) 
@@ -111,7 +111,7 @@ class Dialog extends React.Component {
   render() {
     return ( 
         <DragDropContext onDragEnd={this.onDragEnd}>
-            <div className="conversation">
+            <div className="main">
                 <div className="conversation-title"> 
                     <input type="text" onChange={this.UpdateTitle} value={this.state.dialogTitle} placeholder="Dialog Title"></input>
                 </div> 
@@ -120,7 +120,7 @@ class Dialog extends React.Component {
                     <div className="dialogs" 
                     ref={provided.innerRef}
                     {...provided.droppableProps}> 
-                        {this.state.lines.map((data, i) => <Line index={i} key={i} id={i} GetCharacter={this.GetCharacter} GetEmotion={this.GetEmotion} GetDialogLine={this.GetDialogLine} DeleteLine={this.DeleteLine} character={data.character} emotion={data.emotion} dialog={data.dialog} emotion={data.emotion}/> ) }
+                        {this.state.lines.map((data, i) => <Line index={i} key={i} id={i} GetCharacter={this.GetCharacter} GetEmotion={this.GetEmotion} GetDialogLine={this.GetDialogLine} DeleteLine={this.DeleteLine} character={data.character} emotion={data.emotion} dialog={data.dialog} /> ) }
                         {provided.placeholder}
                     </div> 
                 )}

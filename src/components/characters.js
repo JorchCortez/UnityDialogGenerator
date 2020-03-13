@@ -1,9 +1,6 @@
 import React from 'react'; 
 
-class Characters extends React.Component { 
-    constructor(props) {
-        super(props); 
-      } 
+class Characters extends React.Component {  
       //I havent broke this right?
       render () { 
         return(
