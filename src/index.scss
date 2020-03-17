@@ -11,14 +11,6 @@ $darker-bp: #5E71B3;
   color: $font-main;
 }
 
-body::-webkit-scrollbar-track {
-  background: $not-black;
-}
-
-body::-webkit-scrollbar-thumb {
-  background: $blurple;
-}
-
 /**************************/
 /****** Styling page ******/
 /**************************/
@@ -42,9 +34,11 @@ html{
 .dialogs, .char-list{
   overflow-x: hidden;
 }
+
 .dialogs::-webkit-scrollbar-track, .char-list::-webkit-scrollbar-track{
   background: $not-black;
 }
+
 .dialogs::-webkit-scrollbar-thumb, .char-list::-webkit-scrollbar-thumb{
   background: $blurple;
 }
@@ -67,59 +61,63 @@ html{
       height: 100%;
       .nav-item {
         width: 100%;
-        .nav-link{
-          display: flex;
-          align-items: center;
-          height: 5rem;
-          color: $font-main;
-          text-decoration: none;
-          filter: grayscale(100%) opacity(0.7);
-          transition: 150ms ease-in-out;
-          .link-text{
-            display: none;
-            margin-left: 1rem;
-            color: $grayple;
-          }
-          svg, img{
-            width: 2rem;
-            min-width: 2rem;
-            margin: 0 1.5rem;
-          } 
-        }
-        .nav-link:hover {
-          filter: grayscale(0%) opacity(1);
-          background: #000000;
-          color: $font-white;
-        }
       }
       .nav-item:last-child {
         margin-top: auto;
-      } 
-      .logo {
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-bottom: 1rem;
-        text-align: center;
-        color: var(--text-secondary);
-        background: var(--bg-secondary);
-        font-size: 1.5rem;
-        letter-spacing: 0.3ch;
-        width: 100%;
-        svg {
-          transform: rotate(0deg);
-          transition: 150ms ease-in-out;
-        }
-        
-        .logo-text
-        {
-          display: inline;
-          position: absolute;
-          left: -999px;
-          transition: 150ms ease-in-out;
-        }
-      } 
+      }
+    }
+  }
+  
+  .nav-link{
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    color: $font-main;
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.7);
+    transition: 150ms ease-in-out;
+    .link-text{
+      display: none;
+      margin-left: 1rem;
+      color: $grayple;
+    }
+    svg, img{
+      width: 2rem;
+      min-width: 2rem;
+      margin: 0 1.5rem;
     } 
-  } 
+  }
+  .nav-link:hover {
+    filter: grayscale(0%) opacity(1);
+    background: #000000;
+    color: $font-white;
+  }
+
+  .logo {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    font-size: 1.5rem;
+    letter-spacing: 0.3ch;
+    width: 100%;
+  }
+  
+  .logo svg {
+    transform: rotate(0deg);
+    transition: 150ms ease-in-out;
+  }
+  
+  .logo-text
+  {
+    display: inline;
+    position: absolute;
+    left: -999px;
+    transition: 150ms ease-in-out;
+  }
+  
   .navbar:hover .logo svg {
     transform: rotate(-180deg);
   }
